@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.pages.Page6"
+             xmlns:Calculator="clr-namespace:chapter3.ViewModel.Tip"
+             Title="Page6" BackgroundColor="#566ee8">
+    <ContentPage.BindingContext>
+        <Calculator:Page6ViewModel></Calculator:Page6ViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Label 
+            Text="Tip Calculator"
+            FontFamily="Weddingday"
+            FontAttributes="Bold"
+            FontSize="40"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Frame Margin="10,10,10,10">
+            <StackLayout>
+                <Image
+                    Source="tip.jpg"
+                    HeightRequest="100"></Image>
+                <Grid
+                    RowDefinitions="*,*,*"
+                    ColumnDefinitions="*,*"
+                    Margin="5,10,5,0">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Enter Bill Amount:">
+                    </Label>
+                    <Entry  
+                        x:Name="BillEntry"
+                        ReturnCommand="{Binding BillCommand}"
+                        Text="{Binding BillAmount}"
+                        Grid.Row="0"
+                        FontSize="16"
+                        Grid.Column="1"
+                        TextColor="Gray"
+                        Keyboard="Numeric"  
+                        
+                        ></Entry>
+                    <Label
+                        Margin="0,15,0,0"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Tip:">
+                    </Label>
+                    <Label 
+                        Margin="0,15,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="Gray"
+                        Text="{Binding TipTotal}"
+                        Grid.Row="1"
+                        FontSize="16"
+                        Grid.Column="1"                     
+                        ></Label>
+                    <Label
+                        Margin="0,10,0,0"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Total:">
+                    </Label>
+                    <Label 
+                        Margin="0,10,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        Text="{Binding Tip}"
+                        TextColor="gray"
+                        Grid.Row="2"
+                        FontSize="16"
+                        Grid.Column="1"                     
+                        ></Label>
+                </Grid>
+            </StackLayout>
+        </Frame>
+        <Frame Margin="10,20,10,0">
+            <Grid
+                RowDefinitions="*,*,*,*,*"
+                ColumnDefinitions="*,*">
+                
+                <Label
+                        Margin="0,15,0,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Tip">
+                </Label>
+                <Label 
+                    BindingContext="{x:Reference TipSlider}"
+                        Grid.Row="0"
+                        Grid.Column="1" 
+                        Margin="0,15,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="Gray"
+                        Text="{Binding Value, StringFormat='{0:g}%'}"
+                        FontSize="16"
+                       >
+                </Label>
+                <Slider 
+                    x:Name="TipSlider"
+                    
+                    Value="{Binding TipValue}"
+                    Margin="0,10,0,0"
+                    Minimum="0"
+                    Maximum="100"
+                    ThumbColor="Gray"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"></Slider>
+
+                <Label
+                        Margin="0,15,0,0"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Split">
+                </Label>
+                <Label 
+                    BindingContext="{x:Reference SplitSlider}"
+                        Grid.Row="2"
+                        Grid.Column="1" 
+                        Margin="0,15,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="Gray"
+                        Text="{Binding Value,StringFormat='{0:g}'}"
+                        FontSize="16"
+                       >
+                </Label>
+                <Slider 
+                    x:Name="SplitSlider"
+                    Margin="0,10,0,0"
+                    Minimum="1"
+                    Maximum="20"
+                    ThumbColor="Gray"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"></Slider>
+
+                <Label
+                        Margin="0,15,0,0"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"
+                        Text="Split Total:">
+                </Label>
+                <Label 
+                    x:Name="SplitTotalLabel"
+                        Grid.Row="4"
+                        Grid.Column="1" 
+                        Margin="0,15,0,0"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="Gray"
+                        FontSize="16">
+
+                </Label>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentPage>

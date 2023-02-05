@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.pages.Page2"
+             Title="Page2" BackgroundColor="#464a43">
+    <StackLayout>
+        
+        <Label 
+            Padding="30,10,10,20"
+            BackgroundColor="CornflowerBlue"
+            FontSize="18"
+            TextColor="White"
+            Text="Unit Converter"
+            VerticalOptions="Center" 
+             />
+        <Grid 
+           RowDefinitions="*,*"
+           ColumnSpacing="20"
+           ColumnDefinitions="*,*">
+            <Entry
+                x:Name="FirstEntry"
+                Grid.Column="0"             
+                FontSize="16"
+                TextColor="White"               
+                Keyboard="Numeric"></Entry>
+            <Entry
+                x:Name="SecondEntry"
+                WidthRequest="170"
+                Grid.Column="1"
+                TextColor="White"
+                FontSize="16"
+                
+                Keyboard="Numeric"></Entry>
+
+            <Label
+                Margin="10"
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="From"
+                HorizontalOptions="StartAndExpand"
+                TextColor="White"
+                FontSize="16"
+            ></Label>
+            <Label
+                Margin='10'
+                Grid.Column="1"
+                Grid.Row="2"
+                Text="To"
+                TextColor="White"
+                HorizontalOptions="StartAndExpand"
+                FontSize="16"
+            ></Label>
+        </Grid>
+
+        <Grid 
+          
+           RowDefinitions="*,*,*"
+           ColumnSpacing="20"
+           ColumnDefinitions="*,*">
+
+            
+                <RadioButton 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Content='Celsius'                   
+                    GroupName="From"
+                    TextColor="White"
+                    BorderColor="White"
+                    >
+                </RadioButton>
+
+            <RadioButton 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Content='Celsius'                   
+                    GroupName="To"
+                    TextColor="White"
+                    BorderColor="White">
+            </RadioButton>
+            
+
+
+            <RadioButton 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Content='Fahrenheit'                   
+                    GroupName="From"
+                    TextColor="White"
+                    BorderColor="White">
+            </RadioButton>
+            <RadioButton 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Content='Fahrenheit'                   
+                    GroupName="To"
+                    TextColor="White"
+                    BorderColor="White">
+            </RadioButton>
+
+
+            <RadioButton 
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Content='Kelvin'                   
+                    GroupName="From"
+                    TextColor="White"
+                    BorderColor="White">
+            </RadioButton>
+            <RadioButton 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Content='Kelvin'                   
+                    GroupName="To"
+                    TextColor="White"
+                    BorderColor="White">
+            </RadioButton>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>

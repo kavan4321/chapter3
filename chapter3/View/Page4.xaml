@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.pages.Page4"
+             Title="Page4">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label 
+            Text="Delete Profile"
+            FontSize="34"
+            FontAttributes="Bold"
+            VerticalOptions="Center"/>
+            <Label
+                Margin="0,20,0,10"
+                FontSize="16"
+                Text="It's advisable for you to request your data to be sent toyour email">
+            </Label>
+            <HorizontalStackLayout Margin="0,10,0,0">
+                <CheckBox
+                    x:Name="ConfirmCheck"
+                    Color="Gray"
+                    HorizontalOptions="Start"></CheckBox>
+                <Label
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="16"
+                    Text="Yes,send my data to my email"></Label>
+            </HorizontalStackLayout>
+            <Line
+                Margin="0,20,0,0"
+                HeightRequest="1"
+                BackgroundColor="LightGray"></Line>
+            <Line
+                Margin="0,5,0,0"
+                HeightRequest="1"
+                BackgroundColor="LightGray"></Line>
+            <Button
+                Margin="0,20,0,0"
+                BindingContext="{x:Reference ConfirmCheck}"
+                IsEnabled="{Binding IsChecked}"
+                BackgroundColor="Red"
+                Text="CONFIRM DELETION"></Button>
+            <Label
+                Margin="0,20,0,0"
+                TextColor="gray"
+                FontSize="16"
+                HorizontalOptions="StartAndExpand"
+                HorizontalTextAlignment="Start"
+                Text="You will permanently lose all your reviews,contacts,messages,and profile info.After this,there is no turning back."></Label>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

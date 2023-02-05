@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.pages.Page8"
+             Title="Page8">
+    <StackLayout>
+        
+        <Frame
+            VerticalOptions="CenterAndExpand">
+            <StackLayout>
+            <Label
+                Margin="0,10,0,0"
+                Text="Question:Have you finished graduation?"></Label>
+            <Grid 
+                Margin="0,10,0,0"
+                RowDefinitions="*"
+                ColumnDefinitions="*,*">
+                    <RadioButton
+                        Grid.Column="0"
+                        Content="Yes"
+                        GroupName="Answer"></RadioButton>
+                    <RadioButton
+                        Grid.Column="1"
+                        Content="No"
+                        GroupName="Answer"></RadioButton>
+                </Grid>
+                <Button
+                    Margin="0,10,0,0"
+                   Text="Next" ></Button>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.pages.Page7"
+             Title="Page7" BackgroundColor="#786e77">
+    <StackLayout>
+        <Frame
+            Margin="10"
+           VerticalOptions="CenterAndExpand">
+            <VerticalStackLayout>
+                <Label
+                    Margin="0,10,0,0"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Color Picker"></Label>
+                <Label
+                    Margin="0,15,0,0"
+                    FontSize="16"
+                    Text="Red"></Label>
+                <Slider
+                    Margin="0,15,0,0"
+                    ></Slider>
+                <Label
+                    Margin="0,15,0,0"
+                    Text="Green"></Label>
+                <Slider
+                    Margin="0,15,0,0"
+                    ></Slider>
+                <Label
+                    Margin="0,15,0,0"
+                    Text="Blue"></Label>
+                <Slider
+                    Margin="0,15,0,0"
+                    ></Slider>
+                <Frame 
+                    CornerRadius="15"
+                    Margin="0,15,0,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                    <Label
+                        Text="#7C7D7C"></Label>
+                </Frame>
+                <Button
+                    Margin="0,25,0,0"
+                    Text="Generate Random Color"></Button>
+
+            </VerticalStackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

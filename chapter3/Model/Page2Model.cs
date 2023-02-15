@@ -8,6 +8,21 @@ namespace chapter3.Model
 {
     class Page2Model
     {
+        public double EntryValue { get; set; }
+
+        public bool Cel;
+
+        public bool SecondCel;
+
+        public bool Fah;
+
+        public bool SecondFah;
+
+        public bool Kelvin;
+
+        public bool SecondKelvin;
+        
+
 
     }
 }

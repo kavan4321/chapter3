@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="chapter3.pages.Page3"
+             xmlns:DeleteProfile="clr-namespace:chapter3.ViewModel.Profile"
              Title="Page3">
+    <ContentPage.BindingContext>
+        <DeleteProfile:Page3ViewModel></DeleteProfile:Page3ViewModel>
+    </ContentPage.BindingContext>
     <ScrollView>
-    <StackLayout Padding="20">
+    <StackLayout Margin="20">
         <Label 
             Text="Delete Profile"
             FontSize="34"
@@ -42,7 +46,9 @@
                 HorizontalOptions="Center"
                 BackgroundColor="LightGray"></Line>
             <RadioButton
+                CheckedChanged="OtherButton_CheckedChanged"
                 x:Name="OtherButton"
+                IsChecked="{Binding OtherCheck}"
                 GroupName="Delete"
                 FontSize="18"
                 Content=" Other"
@@ -50,8 +56,8 @@
             ></RadioButton>
         </VerticalStackLayout>
         <Frame 
-            BindingContext="{x:Reference OtherButton}"
-            IsVisible="{Binding IsChecked}"
+            
+            IsVisible="{Binding Visible}"
             Margin="0,15,0,0">
             <Editor
                 FontSize="15"
@@ -61,6 +67,7 @@
             ></Editor>
         </Frame>
             <Button
+             
                 Text="CONTINUE..."
                 BackgroundColor="SlateGrey"
                 VerticalOptions="EndAndExpand"

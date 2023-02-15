@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.View.Page5"
+             xmlns:Alcohol="clr-namespace:chapter3.ViewModel.MyCart"
+             Title="Page5">
+    <ContentPage.BindingContext>
+        <Alcohol:Page5ViewModel></Alcohol:Page5ViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+            <Label 
+                   Text="My Cart"
+                   FontAttributes="Bold"
+                   FontSize="23"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0"></Label>
+
+            <Grid 
+                ColumnDefinitions="20,*"
+                RowDefinitions="*,*,*"
+                ColumnSpacing="5"
+                RowSpacing="10"
+                Margin="10">
+              
+               <!--First-->
+                <CheckBox 
+                    IsChecked="{Binding ModeloCheck}"
+                    CheckedChanged="CheckBox_CheckedChanged"
+                    VerticalOptions="Center">
+                </CheckBox>
+
+                <Frame 
+                    BorderColor="White"
+                    Padding="10"
+                    BackgroundColor="LightCyan"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    CornerRadius="25">
+                    
+                    <Grid 
+                        RowDefinitions="*"
+                        ColumnDefinitions="50,*" 
+                        ColumnSpacing="5">
+                        <Image 
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Source="modelo"
+                            WidthRequest="40"></Image>
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <Label 
+                                Text="Modelo Especial"
+                                FontAttributes="Bold"
+                                FontSize="18"></Label>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Text="Size: 35.5cl / "
+                                    TextColor="Gray"></Label>
+                                <Label 
+                                    Text="355ml"
+                                    TextColor="Gray"></Label>
+                            </HorizontalStackLayout>
+                            <Grid 
+                             RowDefinitions="*"
+                             ColumnDefinitions="*,0.7*">
+                                <Label 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding ModeloPrize,StringFormat='${0}'}"
+                                FontSize="Large" 
+                                FontAttributes="Bold"  
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                Margin="5,10,0,0" ></Label>
+
+                                <Frame 
+                                Padding="10"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                    Margin="0,10,0,0"
+                                    HorizontalOptions="EndAndExpand"
+                                    BorderColor="LightGray" 
+                                    CornerRadius="15"
+                                    BackgroundColor="White">
+                                    <HorizontalStackLayout>
+                                        <ImageButton
+                                                x:Name="Button"
+                                                Clicked="Button_Clicked"
+                                                Command="{Binding ModeloMinusCommand}"
+                                                Source="sub.png"                                               
+                                                WidthRequest="15" 
+                                                HeightRequest="15">
+                                        </ImageButton>
+                                        <Label 
+                                                x:Name="ModeloLabel"
+                                                Text="{Binding ModeloValue}"
+                                                FontAttributes="Bold"  
+                                                TextColor="Black" 
+                                                Margin="10,0,10,0" ></Label>
+                                        <ImageButton
+                                            Clicked="Button_Clicked"
+                                            Source="plus.png" 
+                                            Command="{Binding ModeloPlusCommand}"
+                                            WidthRequest="15" 
+                                            HeightRequest="15">
+                                        </ImageButton>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <!--Second-->
+              
+                <CheckBox 
+                     CheckedChanged="CheckBox_CheckedChanged"
+                     IsChecked="{Binding SurelyCheck}"
+                     VerticalOptions="Center"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                    />
+                <Frame 
+                    BorderColor="White"
+                    Padding="10"
+                    BackgroundColor="LightCyan"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    CornerRadius="25">
+
+                    <Grid 
+                        RowDefinitions="*"
+                        ColumnDefinitions="50,*" 
+                        ColumnSpacing="5">
+                        <Image 
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Source="surely"
+                            WidthRequest="40"></Image>
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <Label 
+                                Text="Surely Non Alcoholic"
+                                FontAttributes="Bold"
+                                FontSize="18"></Label>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Text="Size: 0.5% Al/"
+                                    TextColor="Gray"></Label>
+                                <Label 
+                                    Text=" 1L"
+                                    TextColor="Gray"></Label>
+                            </HorizontalStackLayout>
+                            <Grid 
+                             RowDefinitions="*"
+                             ColumnDefinitions="*,0.7*">
+                                <Label 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding SurelyPrize,StringFormat='${0}'}"
+                                FontSize="Large" 
+                                FontAttributes="Bold"  
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                Margin="5,10,0,0" ></Label>
+
+                                <Frame 
+                                Padding="10"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                    Margin="0,10,0,0"
+                                    HorizontalOptions="EndAndExpand"
+                                    BorderColor="LightGray" 
+                                    CornerRadius="15"
+                                    BackgroundColor="White">
+                                    <HorizontalStackLayout>
+                                        <ImageButton
+                                                Clicked="Button_Clicked"
+                                               Command="{Binding SurelyMinusCommand}"
+                                                Source="sub.png"                                               
+                                                WidthRequest="15" 
+                                                HeightRequest="15">
+                                        </ImageButton>
+                                        <Label 
+                                            Text="{Binding SurelyValue}"
+                                                FontAttributes="Bold"  
+                                                TextColor="Black" 
+                                                Margin="10,0,10,0" ></Label>
+                                        <ImageButton
+                                            Clicked="Button_Clicked"
+                                            Command="{Binding SurelyPlusCommand}"
+                                            Source="plus.png" 
+                                            WidthRequest="15" 
+                                            HeightRequest="15">
+                                        </ImageButton>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <!--third-->
+
+                <CheckBox 
+                     CheckedChanged="CheckBox_CheckedChanged"
+                     IsChecked="{Binding BaiCheck}"
+                     VerticalOptions="Center"
+                     Grid.Row="2"
+                     Grid.Column="0"></CheckBox>
+
+                <Frame 
+                    BorderColor="White"
+                    Padding="10"
+                    BackgroundColor="LightCyan"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    CornerRadius="25">
+
+                    <Grid 
+                        RowDefinitions="*"
+                        ColumnDefinitions="50,*" 
+                        ColumnSpacing="5">
+                        <Image 
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Source="bai"
+                            WidthRequest="40"></Image>
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <Label 
+                                Text="Bai Coconut Flavored"
+                                FontAttributes="Bold"
+                                FontSize="18"></Label>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Text="Size: 10cl / "
+                                    TextColor="Gray"></Label>
+                                <Label 
+                                    Text="250ml"
+                                    TextColor="Gray"></Label>
+                            </HorizontalStackLayout>
+                            <Grid 
+                             RowDefinitions="*"
+                             ColumnDefinitions="*,0.7*">
+                                <Label 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding BaiPrize, StringFormat='${0}'}"
+                                FontSize="Large" 
+                                FontAttributes="Bold"  
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                Margin="5,10,0,0" ></Label>
+
+                                <Frame 
+                                Padding="10"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                    Margin="0,10,0,0"
+                                    HorizontalOptions="EndAndExpand"
+                                    BorderColor="LightGray" 
+                                    CornerRadius="15"
+                                    BackgroundColor="White">
+                                    <HorizontalStackLayout>
+                                        <ImageButton                                              
+                                                Source="sub.png"
+                                                Clicked="Button_Clicked"
+                                                Command="{Binding BaiMinusCommand}"
+                                                WidthRequest="15" 
+                                                HeightRequest="15">
+                                        </ImageButton>
+                                        <Label 
+                                            Text="{Binding BaiValue}"
+                                                FontAttributes="Bold"  
+                                                TextColor="Black" 
+                                                Margin="10,0,10,0" ></Label>
+                                        <ImageButton
+                                            Clicked="Button_Clicked"
+                                            Command="{Binding BaiPlusCommand}"
+                                            Source="plus.png" 
+                                            WidthRequest="15" 
+                                            HeightRequest="15">
+                                        </ImageButton>
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+            </Grid>
+
+           
+            
+            <!--promocode-->
+            
+            <Frame
+                Padding="15"
+                CornerRadius="15"
+                Margin="10">
+
+                <Grid RowDefinitions="*"
+                      ColumnDefinitions="*,Auto">
+
+                    <Entry 
+                        Grid.Column="0"
+                        Placeholder="Promo Code"
+                        FontSize="16"/>
+
+                    <Button 
+                            x:Name="Apply"
+                            Grid.Column="1"
+                            BackgroundColor="DarkBlue"
+                            HorizontalOptions="EndAndExpand"
+                            Text="Apply"
+                            Clicked="Apply_Clicked"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            FontSize="16"
+                            CornerRadius="15"/>
+                </Grid>
+
+            </Frame>
+
+            <!--subtotal-->
+            <Grid 
+                Margin="20,20,20,10"
+                RowDefinitions="*,*"
+                  ColumnDefinitions="*,*">
+
+                <Label 
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Sub Total:"
+                       FontSize="15"
+                       FontAttributes="Bold" 
+                       TextColor="DarkGray"></Label>
+                <Label 
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      Text="{Binding SubTotal,StringFormat='${0}'}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="EndAndExpand"
+                       TextColor="DarkGray"></Label>
+
+                <Label 
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Shipping : "
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       TextColor="DarkGray" ></Label>
+
+                <Label 
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Text="$ 2.53"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="EndAndExpand"
+                       TextColor="DarkGray" ></Label>
+
+            </Grid>
+
+                <Line 
+                    Margin="10"
+                    HeightRequest="2"
+                    BackgroundColor="Gray"/>
+
+            <Frame 
+                Padding="10"
+                BackgroundColor="DarkBlue"
+                CornerRadius="15" 
+                VerticalOptions="EndAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <VerticalStackLayout>
+                        <Label                        
+                        Text="Total: (2 items)"
+                        TextColor="White"></Label>
+                        <Label
+                           LineBreakMode="CharacterWrap"
+                           Text="$13.55"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="White"></Label>
+                    </VerticalStackLayout>
+                    <Button 
+                            Text="Proceed To Checkout"
+                            BackgroundColor="White"
+                            TextColor="DarkBlue"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            WidthRequest="170"
+                            HeightRequest="50"
+                            CornerRadius="15"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="EndAndExpand"></Button>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    

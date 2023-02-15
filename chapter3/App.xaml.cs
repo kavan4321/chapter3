@@ -1,11 +1,12 @@
 ﻿namespace chapter3;
-using pages;
+using chapter3.pages;
+using View;
 public partial class App : Application
 {
 	public App()
 	{
 		InitializeComponent();
 
-		MainPage = new Page6();
+		MainPage = new Page5();
 	}
 }

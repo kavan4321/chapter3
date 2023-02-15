@@ -1,4 +1,5 @@
 ﻿using chapter3.Model.Tip;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,55 +11,102 @@ using System.Windows.Input;
 
 namespace chapter3.ViewModel.Tip
 {
-     public class Page6ViewModel : INotifyPropertyChanged
+    public class Page6ViewModel : INotifyPropertyChanged
     {
-        public ICommand BillCommand => new Command(BillEntry);
+        private readonly Page6Model _page6Model;
 
-        public ICommand TipCommand => new Command(TipChange);
-        public Double BillAmount { get; set; }
-        public Double TipValue { get; set; }
-        private Double _tip;
-        private Double _tipvalue;
+        private double _billAmount;
+        public double BillAmount
+        {
+            get => _billAmount;
+            set { 
+                 _billAmount = value;
+                 OnPropertyChanged();
+            }
+        }
+
+
+
+        private double _tipSLider;
+        public double TipSLider
+        {
+            get => _tipSLider;
+            set
+            {
+                _tipSLider = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private double _splitSlider;
+        public double SplitSlider
+        {
+            get => _splitSlider;
+            set
+            {
+                _splitSlider = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+        public double Tip
+        {
+            get{ return (int)TipSLider; }
+            
+        }
+       
+        public double Split
+        {
+            get { return (int)SplitSlider; }
+            
+        }
+      
+        public double TipDisplay
+        {
+            get { return Math.Round(BillAmount* (Tip / 100),2); }
+            
+        }
+
+        public double Total
+        {
+            get { return BillAmount + TipDisplay; } 
+            
+        }
+
         
-
-
-        public Double TipTotal
+        public double SplitsTotal
         {
-            get { return _tip; }
+            get { 
 
-            set
-            {
-                _tip = value;
-                OnPropertyChanged();
+                return Math.Round(Total /Split,2) ; 
             }
+            
         }
 
-        public Double Tip
-        {
-            get { return _tipvalue; }
+       
 
-            set
-            {
-                _tipvalue = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Double Split { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged([CallerMemberName] string name = "")
+        protected virtual void OnPropertyChanged(string name = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
-        public void BillEntry()
+        
+        public Page6ViewModel()
         {
-            TipTotal = BillAmount;
+            _page6Model =new Page6Model();
+           
         }
-        public void TipChange()
-        {
-            Tip = TipValue;
-        }
+   
     }
 }

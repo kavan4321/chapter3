@@ -34,14 +34,12 @@
                     </Label>
                     <Entry  
                         x:Name="BillEntry"
-                        ReturnCommand="{Binding BillCommand}"
                         Text="{Binding BillAmount}"
                         Grid.Row="0"
                         FontSize="16"
                         Grid.Column="1"
                         TextColor="Gray"
-                        Keyboard="Numeric"  
-                        
+                        Keyboard="Numeric"
                         ></Entry>
                     <Label
                         Margin="0,15,0,0"
@@ -56,7 +54,7 @@
                         Margin="0,15,0,0"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
-                        Text="{Binding TipTotal}"
+                        Text="{Binding TipDisplay,StringFormat='{0}',Mode=TwoWay}"
                         Grid.Row="1"
                         FontSize="16"
                         Grid.Column="1"                     
@@ -73,7 +71,7 @@
                     <Label 
                         Margin="0,10,0,0"
                         HorizontalOptions="EndAndExpand"
-                        Text="{Binding Tip}"
+                        Text="{Binding Total}"
                         TextColor="gray"
                         Grid.Row="2"
                         FontSize="16"
@@ -86,7 +84,7 @@
             <Grid
                 RowDefinitions="*,*,*,*,*"
                 ColumnDefinitions="*,*">
-                
+
                 <Label
                         Margin="0,15,0,0"
                         Grid.Row="0"
@@ -97,27 +95,26 @@
                         Text="Tip">
                 </Label>
                 <Label 
-                    BindingContext="{x:Reference TipSlider}"
+                    x:Name="Tipvalue"
+                        Text="{Binding Tip ,StringFormat='{0}%',Mode=TwoWay}"
                         Grid.Row="0"
                         Grid.Column="1" 
                         Margin="0,15,0,0"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
-                        Text="{Binding Value, StringFormat='{0:g}%'}"
                         FontSize="16"
                        >
                 </Label>
                 <Slider 
                     x:Name="TipSlider"
-                    
-                    Value="{Binding TipValue}"
+                    Value="{Binding TipSLider, Mode=TwoWay}"
+                   ValueChanged="TipSlider_ValueChanged"
                     Margin="0,10,0,0"
                     Minimum="0"
                     Maximum="100"
                     ThumbColor="Gray"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"></Slider>
-
                 <Label
                         Margin="0,15,0,0"
                         Grid.Row="2"
@@ -128,17 +125,17 @@
                         Text="Split">
                 </Label>
                 <Label 
-                    BindingContext="{x:Reference SplitSlider}"
                         Grid.Row="2"
-                        Grid.Column="1" 
+                        Grid.Column="1"
                         Margin="0,15,0,0"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
-                        Text="{Binding Value,StringFormat='{0:g}'}"
+                        Text="{Binding Split}"
                         FontSize="16"
                        >
                 </Label>
                 <Slider 
+                    Value="{Binding SplitSlider}"
                     x:Name="SplitSlider"
                     Margin="0,10,0,0"
                     Minimum="1"
@@ -161,10 +158,10 @@
                         Grid.Row="4"
                         Grid.Column="1" 
                         Margin="0,15,0,0"
+                        Text="{Binding SplitsTotal,Mode=TwoWay}"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
                         FontSize="16">
-
                 </Label>
             </Grid>
         </Frame>

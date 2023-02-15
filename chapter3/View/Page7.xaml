@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="chapter3.pages.Page7"
-             Title="Page7" BackgroundColor="#786e77">
-    <StackLayout>
+             xmlns:ColorPicker="clr-namespace:chapter3.ViewModel.ColorPick"
+             Title="Page7"
+             >
+    <ContentPage.BindingContext>
+        <ColorPicker:Page7ViewModel></ColorPicker:Page7ViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout
+        BackgroundColor="{Binding Color}">
         <Frame
             Margin="10"
            VerticalOptions="CenterAndExpand">
@@ -19,18 +25,33 @@
                     Text="Red"></Label>
                 <Slider
                     Margin="0,15,0,0"
+                    Minimum="0"
+                    Maximum="255"
+                    MinimumTrackColor="Red"
+                    ThumbColor="Red"
+                    Value="{Binding RedColor}"
                     ></Slider>
                 <Label
                     Margin="0,15,0,0"
                     Text="Green"></Label>
                 <Slider
+                    Minimum="0"
+                    Maximum="255"
                     Margin="0,15,0,0"
+                    MinimumTrackColor="Green"
+                    ThumbColor="Green"
+                   Value="{Binding GreenColor}"
                     ></Slider>
                 <Label
                     Margin="0,15,0,0"
                     Text="Blue"></Label>
                 <Slider
+                    Minimum="0"
+                    Maximum="255"
                     Margin="0,15,0,0"
+                    MinimumTrackColor="Blue"
+                    ThumbColor="Blue"
+                    Value="{Binding BlueColor}"
                     ></Slider>
                 <Frame 
                     CornerRadius="15"
@@ -38,10 +59,11 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center">
                     <Label
-                        Text="#7C7D7C"></Label>
+                        Text="{Binding HexValue,StringFormat='#{0}'}"></Label>
                 </Frame>
-                <Button
+                <Button                  
                     Margin="0,25,0,0"
+                    Command="{Binding RandomButton}"
                     Text="Generate Random Color"></Button>
 
             </VerticalStackLayout>

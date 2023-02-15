@@ -2,30 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="chapter3.pages.Page8"
+             xmlns:Quiz="clr-namespace:chapter3.ViewModel.QAQuiz"
              Title="Page8">
+
+    <ContentPage.BindingContext>
+        <Quiz:Page8ViewModel></Quiz:Page8ViewModel>
+    </ContentPage.BindingContext>
     <StackLayout>
         
         <Frame
+            Margin="10"
             VerticalOptions="CenterAndExpand">
             <StackLayout>
             <Label
                 Margin="0,10,0,0"
-                Text="Question:Have you finished graduation?"></Label>
+                Text="{Binding Que,StringFormat='Question: {0}'}"> </Label>
             <Grid 
                 Margin="0,10,0,0"
                 RowDefinitions="*"
                 ColumnDefinitions="*,*">
                     <RadioButton
+                        x:Name="Radio_Button"
+                        IsChecked="{Binding Yes}"
+                        CheckedChanged="RadioButton_CheckedChanged"
                         Grid.Column="0"
                         Content="Yes"
                         GroupName="Answer"></RadioButton>
                     <RadioButton
                         Grid.Column="1"
+                        CheckedChanged="RadioButton_CheckedChanged_1"
+                        x:Name="Radio_Button_1"
+                        IsChecked="{Binding No}"
                         Content="No"
                         GroupName="Answer"></RadioButton>
                 </Grid>
-                <Button
-                    Margin="0,10,0,0"
+                <Button                  
+                    x:Name="NextButton"
+                    Margin="0,10,0,0"  
+                    IsEnabled="False"
+                    TextColor="SeaGreen"
+                    Clicked="NextButton_Clicked"
+                    Command="{Binding NextCommand}"
                    Text="Next" ></Button>
             </StackLayout>
         </Frame>

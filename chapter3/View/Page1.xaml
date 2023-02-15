@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="chapter3.View.Page1"
+             xmlns:Quoteshows="clr-namespace:chapter3.ViewModel.DisplayRandomQuote"
+             Title="Page1"
+             BackgroundColor="DarkCyan">
+    <ContentPage.BindingContext>
+        <Quoteshows:Page1ViewModel></Quoteshows:Page1ViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout 
+            VerticalOptions="Center">
+            <Label                 
+                FontSize="32"                      
+                Text="Quote of the Day"
+                FontFamily="De-Peown.ttf"
+                TextColor="White"                
+                HorizontalOptions="Center"/>
+            <Frame 
+                CornerRadius="20"
+                Margin="10,30,10,0" 
+                BackgroundColor="WhiteSmoke">
+                <VerticalStackLayout>
+                    <Label
+                        x:Name="QuoteLabel"
+                        Padding="15,10,15,10"
+                        FontSize="30"
+                        FontFamily="Funky-Monkey"
+                        TextColor="Orange"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center"
+                        Text="{Binding QuoteDisplay}">
+                    </Label>
+                    
+                    <Button
+                        
+                        Command="{Binding RandomCommand}"
+                        Margin="10,20,10,10"
+                        BackgroundColor="Orange"
+                        Text="Get Random Quote"
+                        FontSize="16">
+                    </Button>
+                </VerticalStackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

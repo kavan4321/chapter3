@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="chapter3.pages.Page2"
+             xmlns:UnitConverter="clr-namespace:chapter3.ViewModel.Temp"
              Title="Page2" BackgroundColor="#464a43">
+    <ContentPage.BindingContext>
+        <UnitConverter:Page2ViewModel></UnitConverter:Page2ViewModel>
+    </ContentPage.BindingContext>
     <StackLayout>
         
         <Label 
@@ -14,24 +18,28 @@
             VerticalOptions="Center" 
              />
         <Grid 
+            Margin="10"
            RowDefinitions="*,*"
            ColumnSpacing="20"
            ColumnDefinitions="*,*">
             <Entry
                 x:Name="FirstEntry"
+                ReturnCommand="{Binding ReturnCommand}"
+                Text="{Binding EntryValue}"
                 Grid.Column="0"             
                 FontSize="16"
                 TextColor="White"               
                 Keyboard="Numeric"></Entry>
-            <Entry
-                x:Name="SecondEntry"
+           
+            <Label
+                x:Name="AnswerLabel"
+                Text="{Binding Answer,StringFormat='{0:f}'}"
                 WidthRequest="170"
+                VerticalTextAlignment="Center"
                 Grid.Column="1"
                 TextColor="White"
-                FontSize="16"
-                
-                Keyboard="Numeric"></Entry>
-
+                FontSize="16"             
+               ></Label>
             <Label
                 Margin="10"
                 Grid.Column="0"
@@ -53,42 +61,46 @@
         </Grid>
 
         <Grid 
-          
+           Margin="10,0,10,10"
            RowDefinitions="*,*,*"
            ColumnSpacing="20"
            ColumnDefinitions="*,*">
 
-            
-                <RadioButton 
+
+            <RadioButton 
                     Grid.Column="0"
                     Grid.Row="0"
-                    Content='Celsius'                   
+                    Content='Celsius'  
                     GroupName="From"
                     TextColor="White"
                     BorderColor="White"
+                    IsChecked="{Binding Cel}"               
                     >
-                </RadioButton>
-
+            </RadioButton>
             <RadioButton 
                     Grid.Column="1"
                     Grid.Row="0"
                     Content='Celsius'                   
                     GroupName="To"
+                    IsChecked="{Binding SecondCel}" 
                     TextColor="White"
                     BorderColor="White">
             </RadioButton>
             
-
-
+            
+            
+            
             <RadioButton 
                     Grid.Column="0"
                     Grid.Row="1"
                     Content='Fahrenheit'                   
                     GroupName="From"
+                    IsChecked="{Binding Fah}" 
                     TextColor="White"
                     BorderColor="White">
             </RadioButton>
             <RadioButton 
+                    IsChecked="{Binding SecondFah}"
                     Grid.Column="1"
                     Grid.Row="1"
                     Content='Fahrenheit'                   
@@ -97,8 +109,8 @@
                     BorderColor="White">
             </RadioButton>
 
-
             <RadioButton 
+                    IsChecked="{Binding Kelvin}"
                     Grid.Column="0"
                     Grid.Row="2"
                     Content='Kelvin'                   
@@ -107,14 +119,16 @@
                     BorderColor="White">
             </RadioButton>
             <RadioButton 
+                    IsChecked="{Binding SecondKelvin}"
                     Grid.Column="1"
-                    Grid.Row="2"
+                    Grid.Row="2"                  
                     Content='Kelvin'                   
                     GroupName="To"
                     TextColor="White"
                     BorderColor="White">
             </RadioButton>
-
         </Grid>
+        <Label
+            Text="{Binding EntryValue}"></Label>
     </StackLayout>
 </ContentPage>

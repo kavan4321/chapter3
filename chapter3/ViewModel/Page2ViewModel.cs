@@ -1,5 +1,4 @@
 ﻿using chapter3.Model;
-using chapter3.Model.Tip;
 using CommunityToolkit.Maui.Alerts;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,24 +13,8 @@ namespace chapter3.ViewModel.Temp
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ReturnCommand { get; private set; }
-
-        private double _entryValue;
-        public double EntryValue
-        {
-            get
-            {
-                return _entryValue;
-            }
-
-            set
-            {
-                if (_entryValue != value)
-                {
-                    _entryValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+     
+        public double EntryValue { get; set; }
 
         private double _answer;
         public double Answer
@@ -43,72 +26,17 @@ namespace chapter3.ViewModel.Temp
                 OnPropertyChanged();
             }
         }
+   
+        public bool Cel { get; set; }
+       
+        public bool SecondCel { get; set; }
+        public bool Fah { get; set; }
 
-        private bool _cel;
-        public bool Cel
-        {
-            get => _cel;
-            set
-            {
-                _cel = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool SecondFah { get; set; }
 
-        private bool _secondCel;
-        public bool SecondCel
-        {
-            get => _secondCel;
-            set
-            {
-                _secondCel = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool Kelvin { get; set; }
 
-        private bool _fah;
-        public bool Fah
-        {
-            get => _fah;
-            set
-            {
-                _fah = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _secondFah;
-        public bool SecondFah
-        {
-            get => _secondFah;
-            set
-            {
-                _secondFah = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _kelvin;
-        public bool Kelvin
-        {
-            get => _kelvin;
-            set
-            {
-                _kelvin = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _secondKelvin;
-        public bool SecondKelvin
-        {
-            get => _secondKelvin;
-            set
-            {
-                _secondKelvin = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool SecondKelvin { get; set; }
 
 
         public void OnPropertyChanged([CallerMemberName] string name = "")
@@ -120,46 +48,59 @@ namespace chapter3.ViewModel.Temp
         {
             _page2Model = new Page2Model();
             ReturnCommand = new Command(PerformAction);
+            MethodCalling();
+        }
 
+
+        public void  MethodCalling()
+        {
+            _page2Model.EntryValue=EntryValue;
+            _page2Model.Answer=Answer;
+            _page2Model.Cel=Cel;
+            _page2Model.SecondCel=SecondCel;
+            _page2Model.Fah=Fah;
+            _page2Model.SecondFah=SecondFah;
+            _page2Model.Kelvin=Kelvin;
+            _page2Model.SecondKelvin=SecondKelvin;
         }
 
         public void PerformAction()
         {
             if (Cel == true && SecondCel == true)
             {
-                Answer = (this.EntryValue);
+                Answer = (EntryValue);
             }
             else if (Cel == true && SecondFah == true)
             {
-                Answer = ((this.EntryValue * 9 / 5) + 32);
+                Answer = ((EntryValue * 9 / 5) + 32);
             }
             else if (Cel == true && SecondKelvin == true)
             {
-                Answer = (this.EntryValue + 273.15);
+                Answer = (EntryValue + 273.15);
             }
             else if (Fah == true && SecondCel == true)
             {
-                Answer = ((this.EntryValue - 32) * 5 / 9);
+                Answer = ((EntryValue - 32) * 5 / 9);
             }
             else if (Fah == true && SecondFah == true)
             {
-                Answer = this.EntryValue;
+                Answer = EntryValue;
             }
             else if (Fah == true && SecondKelvin == true)
             {
-                Answer = (this.EntryValue - 32) * 5 / 9 + 273.15;
+                Answer = (EntryValue - 32) * 5 / 9 + 273.15;
             }
             else if (Kelvin == true && SecondCel == true)
             {
-                Answer = (this.EntryValue - 273.15);
+                Answer = (EntryValue - 273.15);
             }
             else if (Kelvin == true && SecondFah == true)
             {
-                Answer = (this.EntryValue - 273.15) * 9 / 5 + 32;
+                Answer = (EntryValue - 273.15) * 9 / 5 + 32;
             }
             else if( Kelvin ==true && SecondKelvin ==true )
             {
-                Answer = this.EntryValue;
+                Answer = EntryValue;
             }
             else
             {

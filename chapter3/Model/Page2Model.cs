@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace chapter3.Model
+﻿namespace chapter3.Model
 {
     class Page2Model
     {
         public double EntryValue { get; set; }
 
-        public bool Cel;
+        public double Answer { get; set; }
 
-        public bool SecondCel;
+        public bool Cel { get; set; }
 
-        public bool Fah;
+        public bool SecondCel { get; set; }
 
-        public bool SecondFah;
+        public bool Fah { get; set; }
 
-        public bool Kelvin;
+        public bool SecondFah { get; set; }
 
-        public bool SecondKelvin;
+        public bool Kelvin { get; set; }
+
+        public bool SecondKelvin { get; set; }
+
+
         
 
 

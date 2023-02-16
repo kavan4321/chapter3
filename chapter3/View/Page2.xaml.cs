@@ -11,4 +11,9 @@ public partial class Page2 : ContentPage
 		InitializeComponent();
         _page2ViewModel = (Page2ViewModel)BindingContext;
     }
+
+    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        _page2ViewModel.ReturnCommand.Execute(this);
+    }
 }

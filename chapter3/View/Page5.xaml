@@ -309,20 +309,23 @@
 
                     <Entry 
                         Grid.Column="0"
+                        Text="{Binding PromoCode}"
                         Placeholder="Promo Code"
-                        FontSize="16"/>
+                        FontSize="16"></Entry>
 
                     <Button 
+                            IsEnabled="{Binding Visible}"
+                            Command="{Binding ApplyCommand}"
                             x:Name="Apply"
+                            Clicked="Apply_Clicked"
                             Grid.Column="1"
                             BackgroundColor="DarkBlue"
                             HorizontalOptions="EndAndExpand"
                             Text="Apply"
-                            Clicked="Apply_Clicked"
                             FontAttributes="Bold"
                             TextColor="White"
                             FontSize="16"
-                            CornerRadius="15"/>
+                            CornerRadius="15"></Button>
                 </Grid>
 
             </Frame>
@@ -360,7 +363,7 @@
                 <Label 
                       Grid.Row="1"
                       Grid.Column="1"
-                      Text="$ 2.53"
+                      Text="{Binding Shipping,StringFormat='${0}'}"
                        FontSize="18"
                        FontAttributes="Bold"
                        HorizontalOptions="EndAndExpand"
@@ -374,18 +377,18 @@
                     BackgroundColor="Gray"/>
 
             <Frame 
-                Padding="10"
+                
                 BackgroundColor="DarkBlue"
                 CornerRadius="15" 
                 VerticalOptions="EndAndExpand">
                 <StackLayout Orientation="Horizontal">
                     <VerticalStackLayout>
-                        <Label                        
-                        Text="Total: (2 items)"
+                        <Label                      
+                        Text="{Binding Item,StringFormat='Total:({0} items)'}"
                         TextColor="White"></Label>
                         <Label
                            LineBreakMode="CharacterWrap"
-                           Text="$13.55"
+                           Text="{Binding CheckOut,StringFormat='${0}'}"
                            FontSize="30"
                            FontAttributes="Bold"
                            TextColor="White"></Label>

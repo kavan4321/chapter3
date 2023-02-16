@@ -1,17 +1,15 @@
-﻿using CommunityToolkit.Maui.Alerts;
-using System;
-using System.Collections.Generic;
+﻿using chapter3.Model;
+using CommunityToolkit.Maui.Alerts;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace chapter3.ViewModel.MyCart
 {
     public class Page5ViewModel : INotifyPropertyChanged
     {
+        private readonly Page5Model _page5Model;
+       
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string name = "")
@@ -34,14 +32,14 @@ namespace chapter3.ViewModel.MyCart
 
         public double ModeloPrize
         {
-            get => 3.55;
-            set { }
+            get;
+            set;
         }           
         public bool ModeloCheck { get; set;}
         public ICommand ModeloMinusCommand { get; private set;}
         public ICommand ModeloPlusCommand { get; private set;}
   
-        private int _modeloValue;
+        private int _modeloValue=1;
         public int ModeloValue
         {
             get => _modeloValue;
@@ -52,22 +50,21 @@ namespace chapter3.ViewModel.MyCart
             }
         }
 
-        private int _modeloC = 1;
         public void ModeloIncrement()
         {
-            _modeloC++;
-            ModeloValue = _modeloC;
+            _modeloValue++;
+            ModeloValue = _modeloValue;
         }
         public void ModeloDecrement()
         {
-            if (_modeloC <= 1)
+            if (_modeloValue <= 1)
             {
                 Toast.Make("Can't Less than that", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
             }
             else
             {
-                _modeloC--;
-                ModeloValue = _modeloC;
+                _modeloValue--;
+                ModeloValue = _modeloValue;
             }
             
         }
@@ -90,14 +87,14 @@ namespace chapter3.ViewModel.MyCart
 
         public double SurelyPrize
         {
-            get => 6.99;
-            set { }
+            get;
+            set;
         }
         public bool SurelyCheck { get; set; }
         public ICommand SurelyMinusCommand { get; private set; }
         public ICommand SurelyPlusCommand { get; private set; }
         
-        private int _surelyValue;
+        private int _surelyValue=1;
         public int SurelyValue
         {
             get => _surelyValue;
@@ -108,23 +105,21 @@ namespace chapter3.ViewModel.MyCart
             }
         }
 
-        private int _surelyC = 1;
-
         public void SurelyIncrement()
         {
-            _surelyC++;
-            SurelyValue = _surelyC;
+            _surelyValue++;
+            SurelyValue = _surelyValue;
         }
         public void SurelyDecrement()
         {
-            if (_surelyC <= 1)
+            if (_surelyValue <= 1)
             {
                 Toast.Make("Can't Less than that", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
             }
             else
             {
-                _surelyC--;
-                SurelyValue = _surelyC;
+                _surelyValue--;
+                SurelyValue = _surelyValue;
             }
 
         }
@@ -149,14 +144,14 @@ namespace chapter3.ViewModel.MyCart
 
         public double BaiPrize
         {
-            get => 3.55;
-            set { }
+            get;
+            set;
         }
         public bool BaiCheck { get; set; }
         public ICommand BaiMinusCommand { get; private set; }
         public ICommand BaiPlusCommand { get; private set; }
         
-        private int _baiValue;
+        private int _baiValue=1;
         public int BaiValue
         {
             get => _baiValue;
@@ -166,24 +161,22 @@ namespace chapter3.ViewModel.MyCart
                 OnPropertyChanged();
             }
         }
-
-        private int _baiC = 1;
        
         public void BaiIncrement()
         {
-            _baiC++;
-            BaiValue = _baiC;
+            _baiValue++;
+            BaiValue = _baiValue;
         }
         public void BaiDecrement()
         {
-            if (_baiC <= 1)
+            if (_baiValue <= 1)
             {
                 Toast.Make("Can't Less than that", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
             }
             else
             {
-                _baiC--;
-                BaiValue = _baiC;
+                _baiValue--;
+                BaiValue = _baiValue;
             }
 
         }
@@ -204,37 +197,174 @@ namespace chapter3.ViewModel.MyCart
 
 
 
-        public string PromoCode { get; set; }
 
-        public ICommand PromoCommand { get; private set; }
-
-        public bool Visible { get; set; }
-
-
-        public void CheckPromo()
+        private string _promoCode;
+        public string PromoCode 
         {
-            if (!string.IsNullOrEmpty(PromoCode))
+            get => _promoCode;
+            set
             {
-                Visible = true;
-            }
-            else
-            {
-                Visible = false;
+                _promoCode = value;
+                OnPropertyChanged();
             }
         }
+
+        public string Promo = "1Rivet";
+        public double _discount = 0;
+        public ICommand ApplyCommand { get; private set; }
+       
+        private bool _visible;
+        public bool Visible
+        { 
+            get => _visible;
+            set
+            {
+                _visible= value;
+                OnPropertyChanged();
+            } 
+       }
+            
+        public double Shipping
+        {
+            get;
+            set;   
+        }
+
+       
         public void SubTotals()
         {
             SubTotal =Math.Round((ModeloTotal+SurelyTotal+BaiTotal),2);
         }
 
-        public void Total()
+        public int C = 0;
+        public void Discount()
         {
-            SurelyCalculate();
-            ModeloCalculate();
-            BaiCalculate();
-            SubTotals();
+            C++;
+            if (ModeloCheck == false && SurelyCheck == false && BaiCheck == false)
+            {
+                Toast.Make("Please select Item",CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+                C--;
+            }
+            else if (string.IsNullOrEmpty(PromoCode))
+            {
+               
+                Toast.Make("Please Enter Promo Code",CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+                C--;
+            }
+            else if (!string.Equals(PromoCode, Promo))
+            {
+                Toast.Make("Please Enter Correct Promo Code", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+                C--;
+            }
+            else if (string.Equals(PromoCode, Promo) && C == 0)
+            {
+                Toast.Make("Alredy Apply", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+            }
+            else if (string.Equals(PromoCode, Promo) && C==1)
+            {
+                _discount= SubTotal - ((SubTotal * 10) / 100);
+                 SubTotal=Math.Round(_discount,2);
+                C--;
+               
+            }
+            
+            else
+            {
+                SubTotal = SubTotal - _discount;
+                
+
+            }
+
         }
 
+        private int _item;
+        public int Item
+        {
+            get=> _item;
+            set
+            {
+                _item= value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ItemTotal()
+        {
+            if(ModeloCheck==true && SurelyCheck==true && BaiCheck == true)
+            {
+                Item = 3;
+            }
+            else if(ModeloCheck == true && SurelyCheck == true)
+            {
+                Item = 2;
+            }
+            else if(ModeloCheck == true && BaiCheck == true)
+            {
+                Item = 2;
+            }
+            else if(BaiCheck == true && SurelyCheck == true)
+            {
+                Item = 2;
+            }else if(ModeloCheck == false && SurelyCheck == false && BaiCheck == false)
+            {
+                Item = 0;
+            }
+            else
+            {
+                Item = 1;
+            }
+        }
+
+
+
+
+        private double _checkOut;
+        public double CheckOut 
+        {
+            get => _checkOut;
+            set
+            {
+                _checkOut = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public void CheckOutTotal()
+        {
+            if(ModeloCheck==true)
+            {
+                CheckOut = Math.Round((SubTotal + Shipping), 2);
+            }
+            else if(SurelyCheck == true)
+            {
+                CheckOut = Math.Round((SubTotal + Shipping), 2);
+            }else if(BaiCheck == true)
+            {
+                CheckOut = Math.Round((SubTotal + Shipping), 2);
+            }
+            else
+            {
+                CheckOut = 0;
+            }
+           
+        }
+
+        public void Total()
+        {
+            ModeloCalculate();
+            SurelyCalculate();
+            BaiCalculate();
+            SubTotals();
+            ItemTotal();
+            CheckOutTotal();
+        }
+
+
+        public void ApplyCommands()
+        {
+            Discount();
+            CheckOutTotal();
+        }
         public void CommandMethods()
         {
             ModeloPlusCommand = new Command(ModeloIncrement);
@@ -244,12 +374,37 @@ namespace chapter3.ViewModel.MyCart
             BaiMinusCommand = new Command(BaiDecrement);
             BaiPlusCommand = new Command(BaiIncrement);
             CalculateCommand = new Command(Total);
+            ApplyCommand = new Command(ApplyCommands);
+        }
+
+        public void MethodCalling()
+        {
+            _page5Model.ModeloCheck = ModeloCheck;
+             ModeloPrize=_page5Model.ModeloPrize;
+            _page5Model.ModeloValue= ModeloValue;
+
+            _page5Model.SurelyCheck = SurelyCheck;
+            SurelyPrize = _page5Model.SurelyPrize;
+            _page5Model.SurelyValue = SurelyValue;
+
+            _page5Model.BaiCheck = BaiCheck;
+            BaiPrize = _page5Model.BaiPrize;
+            _page5Model.BaiValue = BaiValue;
+
+            _page5Model.PromoCode= PromoCode;
+            _page5Model.SubTotal = SubTotal;
+            Shipping = _page5Model.Shipping;
+
+            _page5Model.Item= Item;
+            _page5Model.CheckOut=CheckOut;
         }
 
         public Page5ViewModel()
         {
+            _page5Model =new Page5Model();
             CommandMethods();
-            CheckPromo();
+            MethodCalling();
+            
         }
 
     }

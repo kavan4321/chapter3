@@ -24,7 +24,6 @@
            ColumnDefinitions="*,*">
             <Entry
                 x:Name="FirstEntry"
-                ReturnCommand="{Binding ReturnCommand}"
                 Text="{Binding EntryValue}"
                 Grid.Column="0"             
                 FontSize="16"
@@ -74,6 +73,7 @@
                     GroupName="From"
                     TextColor="White"
                     BorderColor="White"
+                    CheckedChanged="RadioButton_CheckedChanged"
                     IsChecked="{Binding Cel}"               
                     >
             </RadioButton>
@@ -82,25 +82,25 @@
                     Grid.Row="0"
                     Content='Celsius'                   
                     GroupName="To"
-                    IsChecked="{Binding SecondCel}" 
+                    IsChecked="{Binding SecondCel}"
+                    CheckedChanged="RadioButton_CheckedChanged"
                     TextColor="White"
                     BorderColor="White">
             </RadioButton>
-            
-            
-            
-            
+    
             <RadioButton 
                     Grid.Column="0"
                     Grid.Row="1"
                     Content='Fahrenheit'                   
                     GroupName="From"
+                    CheckedChanged="RadioButton_CheckedChanged"
                     IsChecked="{Binding Fah}" 
                     TextColor="White"
                     BorderColor="White">
             </RadioButton>
             <RadioButton 
                     IsChecked="{Binding SecondFah}"
+                    CheckedChanged="RadioButton_CheckedChanged"
                     Grid.Column="1"
                     Grid.Row="1"
                     Content='Fahrenheit'                   
@@ -111,6 +111,7 @@
 
             <RadioButton 
                     IsChecked="{Binding Kelvin}"
+                    CheckedChanged="RadioButton_CheckedChanged"
                     Grid.Column="0"
                     Grid.Row="2"
                     Content='Kelvin'                   
@@ -120,6 +121,7 @@
             </RadioButton>
             <RadioButton 
                     IsChecked="{Binding SecondKelvin}"
+                   CheckedChanged="RadioButton_CheckedChanged"
                     Grid.Column="1"
                     Grid.Row="2"                  
                     Content='Kelvin'                   

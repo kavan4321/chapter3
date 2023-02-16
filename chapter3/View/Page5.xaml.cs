@@ -6,7 +6,8 @@ namespace chapter3.View;
 public partial class Page5 : ContentPage
 {
 	private Page5ViewModel _page5ViewModel;
-	public Page5()
+	
+    public Page5()
 	{
 		InitializeComponent();
         _page5ViewModel = (Page5ViewModel)BindingContext;
@@ -25,5 +26,7 @@ public partial class Page5 : ContentPage
     private void Apply_Clicked(object sender, EventArgs e)
     {
         _page5ViewModel.CalculateCommand.Execute(this);
+        _page5ViewModel.ApplyCommand.Execute(this);
     }
+
 }

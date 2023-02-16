@@ -106,6 +106,8 @@ namespace chapter3.ViewModel.Temp
             {
                 Toast.Make("Please Select Option",CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
             }
+
+            
         }
     }
 }

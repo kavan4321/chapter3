@@ -7,6 +7,7 @@
     <ContentPage.BindingContext>
         <Calculator:Page6ViewModel></Calculator:Page6ViewModel>
     </ContentPage.BindingContext>
+    <ScrollView>
     <StackLayout>
         <Label 
             Text="Tip Calculator"
@@ -54,7 +55,7 @@
                         Margin="0,15,0,0"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
-                        Text="{Binding TipDisplay,StringFormat='{0}',Mode=TwoWay}"
+                        Text="{Binding TipDisplay}"
                         Grid.Row="1"
                         FontSize="16"
                         Grid.Column="1"                     
@@ -95,8 +96,8 @@
                         Text="Tip">
                 </Label>
                 <Label 
-                    x:Name="Tipvalue"
-                        Text="{Binding Tip ,StringFormat='{0}%',Mode=TwoWay}"
+                        x:Name="Tipvalue"
+                        Text="{Binding Tip ,StringFormat='{0}%'}"
                         Grid.Row="0"
                         Grid.Column="1" 
                         Margin="0,15,0,0"
@@ -106,9 +107,9 @@
                        >
                 </Label>
                 <Slider 
-                    x:Name="TipSlider"
-                    Value="{Binding TipSLider, Mode=TwoWay}"
-                   ValueChanged="TipSlider_ValueChanged"
+                    x:Name="Slider"
+                    Value="{Binding TipSLider}"
+                    ValueChanged="Slider_ValueChanged"
                     Margin="0,10,0,0"
                     Minimum="0"
                     Maximum="100"
@@ -137,6 +138,7 @@
                 <Slider 
                     Value="{Binding SplitSlider}"
                     x:Name="SplitSlider"
+                    ValueChanged="SplitSlider_ValueChanged"
                     Margin="0,10,0,0"
                     Minimum="1"
                     Maximum="20"
@@ -158,7 +160,7 @@
                         Grid.Row="4"
                         Grid.Column="1" 
                         Margin="0,15,0,0"
-                        Text="{Binding SplitsTotal,Mode=TwoWay}"
+                        Text="{Binding SplitsTotal}"
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
                         FontSize="16">
@@ -166,4 +168,5 @@
             </Grid>
         </Frame>
     </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,12 +1,5 @@
 ﻿using chapter3.Model;
-using Microsoft.Maui;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace chapter3.ViewModel.QAQuiz
@@ -104,76 +97,22 @@ namespace chapter3.ViewModel.QAQuiz
             No= false;
         }
 
-       
+
 
         public void CheckAnswer()
         {
-
-            if (Yes == true)
+            if (Yes == true && Question == _page8Model.ListOfQuestion[0])
             {
-                Question = _page8Model.ListOfQuestion[1];              
-                Yes = false;
-                if (Yes == true)
-                {
-                    Question = _page8Model.ListOfQuestion[3];
-                    Yes = false;
 
-                    if (Yes == true)
-                    {
-                        Question = _page8Model.ListOfQuestion[7];
-                    }
-                    else if (No==true)
-                    {
-                        Question = _page8Model.ListOfQuestion[8];
-                    }
-                }
-                else
-                {
-                    Question = _page8Model.ListOfQuestion[4];
-                    Yes = false;
-                    if (Yes == true)
-                    {
-                        Question = _page8Model.ListOfQuestion[9];
-                    }
-                    else if (No==true)
-                    {
-                        Question = _page8Model.ListOfQuestion[10];
-                    }
-                }
+                Question = _page8Model.ListOfQuestion[1];
+                Yes = false;
             }
             else
             {
                 Question = _page8Model.ListOfQuestion[2];
-                Yes = false;
-
-                if (Yes == true)
-                {
-                    Question = _page8Model.ListOfQuestion[5];
-                        Yes = false;
-
-                    if (Yes == true)
-                    {
-                        Question = _page8Model.ListOfQuestion[11];
-                    }
-                    else if (No==true)
-                    {
-                        Question = _page8Model.ListOfQuestion[12];
-                    }
-                }
-                else
-                {
-                    Question = _page8Model.ListOfQuestion[6];
-                       Yes=false;
-                    if (Yes == true)
-                    {
-                        Question = _page8Model.ListOfQuestion[13];
-                    }
-                    else if(No ==true)
-                    {
-                        Question = _page8Model.ListOfQuestion[14];
-                    }
-                }
+                No = false;
             }
-        }       
+        }        
+               
     }
 }

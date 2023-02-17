@@ -10,10 +10,8 @@ namespace chapter3.Model
     class Page1Model
     {
         public string QuoteDisplay { get; set; }
-        public void QuoteList()
-        {
-           
-            string[] Quotes = 
+
+        public string[] Quotes = 
             
                 {"You’re braver than you believe, and stronger than you seem, and smarter than you think. -A.A. Mine",
                 "Keep your face to the sunshine and you cannot see a shadow. - Helen Keller",
@@ -26,7 +24,8 @@ namespace chapter3.Model
                 "When we are open to new possibilities, we find them. Be open and skeptical of everything.-Todd Kashdan",
                 "The sun himself is weak when he first rises, and gathers strength and courage as the day gets on. -Charles Dickens",
                 "If opportunity doesn’t knock, build a door. -Milton Berle"};
-
+        public void QuoteList()
+        {
             Random select = new();         
             QuoteDisplay= Quotes.ElementAt(select.Next(0, Quotes.Length));//select element at random selected item
 

@@ -13,8 +13,8 @@ namespace chapter3.ViewModel.DisplayRandomQuote
     class Page1ViewModel : INotifyPropertyChanged
     {
         private readonly Page1Model _page1Model;
-        
-        private string _quoteDisplay;       
+
+        private string _quoteDisplay= "You’re braver than you believe, and stronger than you seem, and smarter than you think. -A.A. Mine";       
         public string QuoteDisplay
         {
             get => _quoteDisplay;

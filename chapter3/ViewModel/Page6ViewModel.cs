@@ -1,13 +1,5 @@
 ﻿using chapter3.Model.Tip;
-
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace chapter3.ViewModel.Tip
 {
@@ -40,7 +32,7 @@ namespace chapter3.ViewModel.Tip
 
 
 
-        private double _splitSlider;
+        private double _splitSlider=1;
         public double SplitSlider
         {
             get => _splitSlider;
@@ -74,15 +66,15 @@ namespace chapter3.ViewModel.Tip
 
         public double Total
         {
-            get { return BillAmount + TipDisplay; } 
+            get { return Math.Round( BillAmount + TipDisplay); } 
             
         }
 
         
         public double SplitsTotal
         {
-            get { 
-
+            get 
+            { 
                 return Math.Round(Total /Split,2) ; 
             }
             

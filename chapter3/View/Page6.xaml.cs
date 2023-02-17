@@ -14,16 +14,14 @@ public partial class Page6 : ContentPage
         _page6ViewModel = (Page6ViewModel)BindingContext;
     }
 
-    private void TipSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+
+    private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        if (string.IsNullOrEmpty(BillEntry.Text))
-        {
-            Toast.Make("Please Enter Value", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
-        }
-        else if (double.Parse(BillEntry.Text) < 100 || double.Parse(BillEntry.Text) > 50000)
-        {
-            Toast.Make("Enter Value Between 100 & 50000", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
-        }
+      
     }
-  
+
+    private void SplitSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+    {
+       
+    }
 }

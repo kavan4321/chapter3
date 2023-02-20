@@ -1,5 +1,6 @@
 ﻿using chapter3.Model;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace chapter3.ViewModel.QAQuiz
@@ -10,7 +11,7 @@ namespace chapter3.ViewModel.QAQuiz
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private int _counts;
+        private int _counts=0;
         public int Counts
         {
             get { return _counts; }
@@ -44,19 +45,8 @@ namespace chapter3.ViewModel.QAQuiz
             }
         }
 
-        public string Que
-        {
-            get
-            {
-                if (Counts == 0)
-                {
-                    return _page8Model.ListOfQuestion[0];
-                }
-                else
-                    return Question;
-            }
-        }
-        private string _question;
+       
+        private string _question= "Have You finished Graduation?";
         public string Question
         {
             get { return _question; }
@@ -67,13 +57,9 @@ namespace chapter3.ViewModel.QAQuiz
             }
         }
 
-        protected virtual void OnPropertyChanged(string name = "")
+        public void OnPropertyChanged([CallerMemberName] string name = "")
         {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
 
@@ -84,11 +70,14 @@ namespace chapter3.ViewModel.QAQuiz
             NextCommand = new Command(Methods);
         }
 
-        public void Methods()
+        public void MethodCalling()
         {
-           
+            Question = _page8Model.ListOfQuestion[Counts];
+        }
+        public void Methods()
+        {       
             CheckAnswer();
-             ClearCheck();
+            ClearCheck();
         }
 
         public void ClearCheck()
@@ -101,18 +90,65 @@ namespace chapter3.ViewModel.QAQuiz
 
         public void CheckAnswer()
         {
-            if (Yes == true && Question == _page8Model.ListOfQuestion[0])
-            {
 
+            if (Question == "Have You finished Graduation?" && Yes == true)
+            {
                 Question = _page8Model.ListOfQuestion[1];
-                Yes = false;
             }
-            else
+            else if (Question == "Have You finished Graduation?" && No == true)
             {
                 Question = _page8Model.ListOfQuestion[2];
-                No = false;
+            }
+            else if (Question == _page8Model.ListOfQuestion[1] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[3];
+            }
+            else if (Question == _page8Model.ListOfQuestion[1] && No == true)
+            {
+                Question = _page8Model.ListOfQuestion[4];
+            }
+            else if (Question == _page8Model.ListOfQuestion[3] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[7];
+            }
+            else if (Question == _page8Model.ListOfQuestion[3] && No == true)
+            {
+                Question = _page8Model.ListOfQuestion[8];
+            }
+            else if (Question == _page8Model.ListOfQuestion[4] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[9];
+            }
+            else if (Question == _page8Model.ListOfQuestion[4] && No == true)
+            {
+                Question = _page8Model.ListOfQuestion[8];
+            }
+            else if (Question == _page8Model.ListOfQuestion[2] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[5];
+            }
+            else if (Question == _page8Model.ListOfQuestion[2] && No == true)
+            {
+                Question = _page8Model.ListOfQuestion[6];
+            }
+            else if (Question == _page8Model.ListOfQuestion[5] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[11];
+            }
+            else if (Question == _page8Model.ListOfQuestion[5] && No == true)
+            {
+                Question = _page8Model.ListOfQuestion[12];
+            }
+            else if (Question == _page8Model.ListOfQuestion[6] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[13];
+            }
+            else if (Question == _page8Model.ListOfQuestion[6] && Yes == true)
+            {
+                Question = _page8Model.ListOfQuestion[14];
             }
         }        
+
                
     }
 }

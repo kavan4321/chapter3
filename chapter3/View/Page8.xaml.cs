@@ -13,7 +13,7 @@ public partial class Page8 : ContentPage
 
 	}
 
-	int C = 0;
+	
 
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
@@ -26,8 +26,7 @@ public partial class Page8 : ContentPage
     }
     private void NextButton_Clicked(object sender, EventArgs e)
     {
-		C++;
-		_page8ViewModel.Counts = C;
+		
     }
 
 

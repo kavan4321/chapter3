@@ -1,28 +1,30 @@
 ﻿using chapter3.Model.Tip;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace chapter3.ViewModel.Tip
 {
     public class Page6ViewModel : INotifyPropertyChanged
     {
-        private readonly Page6Model _page6Model;
+        private  Page6Model _page6Model;
 
         private double _billAmount;
         public double BillAmount
         {
-            get => _billAmount;
+            get { return _billAmount; }
             set { 
                  _billAmount = value;
                  OnPropertyChanged();
             }
         }
 
-
-
         private double _tipSLider;
         public double TipSLider
         {
-            get => _tipSLider;
+            get {return _tipSLider; }
             set
             {
                 _tipSLider = value;
@@ -30,12 +32,10 @@ namespace chapter3.ViewModel.Tip
             }
         }
 
-
-
-        private double _splitSlider=1;
+        private double _splitSlider;
         public double SplitSlider
         {
-            get => _splitSlider;
+            get { return _splitSlider; }
             set
             {
                 _splitSlider = value;
@@ -43,61 +43,115 @@ namespace chapter3.ViewModel.Tip
             }
         }
 
-
-
-
-        public double Tip
+        private int _tip;
+        public int Tip
         {
-            get{ return (int)TipSLider; }
-            
+            get { return _tip; }
+            set
+            {
+                _tip = value;
+                OnPropertyChanged();
+            }
         }
-       
-        public double Split
+
+
+        private int _split=1;
+        public int Split
         {
-            get { return (int)SplitSlider; }
-            
+            get { return _split; }
+            set
+            {
+                _split = value;
+                OnPropertyChanged();
+            }
         }
-      
+
+        private double _tipDisplay;
         public double TipDisplay
         {
-            get { return Math.Round(BillAmount* (Tip / 100),2); }
-            
+            get { return _tipDisplay; }
+            set
+            {
+                _tipDisplay = value;
+                OnPropertyChanged();
+            }
         }
 
+
+
+        private double _total;
         public double Total
         {
-            get { return Math.Round( BillAmount + TipDisplay); } 
-            
+            get { return _total; }
+            set
+            {
+                _total= value;
+                OnPropertyChanged();
+            }
         }
 
-        
+        private double _splitsTotal;     
         public double SplitsTotal
         {
-            get 
-            { 
-                return Math.Round(Total /Split,2) ; 
+            get { return _splitsTotal; }
+            set
+            {
+                _splitsTotal= value;
+                OnPropertyChanged();
             }
-            
         }
 
+        public void Calculation()
+        {
+            Tip = (int)TipSLider;
+            Split = (int)SplitSlider;
+
+
+            if (string.IsNullOrEmpty(BillAmount.ToString()) || string.IsNullOrWhiteSpace(BillAmount.ToString()))
+            {
+                Toast.Make("Please Enter Amount", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+            }
+            else if (BillAmount < 100)
+            {
+                Toast.Make("Amount should greater than 100", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+            }
+            else if (BillAmount > 50000)
+            {
+                Toast.Make("Amount should less than 50000", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+            }
+            else
+            {           
+                TipDisplay = Math.Round(BillAmount * (TipSLider / 100), 2);
+                Total = Math.Round((BillAmount + TipDisplay),2);
+                SplitsTotal = Math.Round(Total / Split, 2);
+            }
+        }
        
 
+        public void MethodCalling()
+        {
+            _page6Model.BillAmount= BillAmount;
+            _page6Model.Tip=Tip;
+            _page6Model.TipSlider = TipSLider;
+            _page6Model.Split=Split;
+            _page6Model.SplitSlider=SplitSlider;
+            _page6Model.TipDisplay=TipDisplay;
+            _page6Model.Total = Total;
+            _page6Model.SplitTotal = SplitsTotal;
 
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string name = "")
+        public void OnPropertyChanged([CallerMemberName] string name = "")
         {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        
+
+
         public Page6ViewModel()
         {
             _page6Model =new Page6Model();
-           
+            MethodCalling(); 
         }
    
     }

@@ -1,10 +1,6 @@
 ﻿using chapter3.Model.ColorPick;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace chapter3.ViewModel.ColorPick
@@ -13,9 +9,13 @@ namespace chapter3.ViewModel.ColorPick
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private  Page7Model _page7Model;
+        public void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
-       
+        private Page7Model _page7Model;
+      
         private double _redColor;
         public double RedColor
         {
@@ -27,11 +27,7 @@ namespace chapter3.ViewModel.ColorPick
             }
         }
 
-        public int REDcolor
-        {
-            get { return (int)RedColor; }
-        }
-
+        
         private double _greenColor;
 
         public double GreenColor
@@ -45,13 +41,9 @@ namespace chapter3.ViewModel.ColorPick
 
         }
 
-        public int GREENcolor
-        {
-            get { return (int)GreenColor; }
-        }
+
 
         private double _blueColor;
-
         public double BlueColor
         {
             get { return _blueColor; }
@@ -64,55 +56,60 @@ namespace chapter3.ViewModel.ColorPick
         }
 
 
-        public int BLUEcolor
-        {
-            get { return (int)BlueColor; }
-        }
 
-        public Color Color
-        {
-            get => Color.FromRgb((int)RedColor, (int)GreenColor, (int)BlueColor);
-
-        }
-
-        
-        public string HexValue
-        {
-            get => REDcolor.ToString("X") + GREENcolor.ToString("X") + BLUEcolor.ToString("X") ;
-        }
-
-
-
-        protected virtual void OnPropertyChanged(string name = "")
-        {
-            var changed = PropertyChanged;
-            if (changed != null)
+        private Color _color;
+        public Color Colors {
+            get { return _color;}
+            set
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                _color = value;
+                OnPropertyChanged();
             }
         }
 
 
-        public void RandomColor()
+        private string _hexValue="000000";
+        public string HexValue
         {
-
-             Random random = new();
-             RedColor = random.Next(0, 256);
-             GreenColor = random.Next(0, 256);
-             BlueColor = random.Next(0, 256);
-
+            get { return _hexValue; }
+            set
+            {
+                _hexValue = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ICommand RandomButton { get; private set; }
+        public void Values()
+        {          
+             Colors = Color.FromRgb((int)RedColor, (int)GreenColor, (int)BlueColor);
+             var red =((int)RedColor).ToString("X2");
+             var green =((int) GreenColor).ToString("X2");
+             var blue = ((int)BlueColor).ToString("X2");
+             HexValue = red.ToString() + green.ToString() + blue.ToString();
+        }
+        public void RandomColor()
+        {
+             Random random = new();
+             RedColor = random.Next(0, 255);
+             GreenColor = random.Next(0, 255);
+             BlueColor = random.Next(0, 255);
+             Values();
+        }
 
+        public void MethodCalling()
+        {
+            _page7Model.BlueColor = BlueColor;
+            _page7Model.RedColor = RedColor;
+            _page7Model.GreenColor = GreenColor;
+            _page7Model.BgColor = Colors;
+        }
+        public ICommand RandomButton { get; private set; }
+      
         public Page7ViewModel()
         {
             _page7Model = new Page7Model();
             RandomButton = new Command(RandomColor);
-            _page7Model.BlueColor=BlueColor;
-            _page7Model.RedColor= RedColor; 
-            _page7Model.GreenColor= GreenColor;
-            _page7Model.BgColor = Color;
+            MethodCalling();
         }
 
 

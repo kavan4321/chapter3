@@ -9,7 +9,7 @@
         <ColorPicker:Page7ViewModel></ColorPicker:Page7ViewModel>
     </ContentPage.BindingContext>
     <StackLayout
-        BackgroundColor="{Binding Color}">
+        BackgroundColor="{Binding Colors}">
         <Frame
             Margin="10"
            VerticalOptions="CenterAndExpand">
@@ -29,6 +29,7 @@
                     Maximum="255"
                     MinimumTrackColor="Red"
                     ThumbColor="Red"
+                    ValueChanged="Slider_ValueChanged"
                     Value="{Binding RedColor}"
                     ></Slider>
                 <Label
@@ -40,7 +41,8 @@
                     Margin="0,15,0,0"
                     MinimumTrackColor="Green"
                     ThumbColor="Green"
-                   Value="{Binding GreenColor}"
+                    ValueChanged="Slider_ValueChanged"
+                    Value="{Binding GreenColor}"
                     ></Slider>
                 <Label
                     Margin="0,15,0,0"
@@ -51,9 +53,11 @@
                     Margin="0,15,0,0"
                     MinimumTrackColor="Blue"
                     ThumbColor="Blue"
+                    ValueChanged="Slider_ValueChanged"
                     Value="{Binding BlueColor}"
                     ></Slider>
                 <Frame 
+                    Padding="15"
                     CornerRadius="15"
                     Margin="0,15,0,0"
                     VerticalOptions="Center"
@@ -61,6 +65,8 @@
                     <Label
                         Text="{Binding HexValue,StringFormat='#{0}'}"></Label>
                 </Frame>
+                <Label
+                    x:Name="Hello"></Label>
                 <Button                  
                     Margin="0,25,0,0"
                     Command="{Binding RandomButton}"

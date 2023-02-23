@@ -1,10 +1,5 @@
-using chapter3.ViewModel.DisplayRandomQuote;
 using chapter3.ViewModel.Tip;
-using CommunityToolkit.Maui.Alerts;
-
-
 namespace chapter3.pages;
-
 public partial class Page6 : ContentPage
 {
 	private readonly Page6ViewModel _page6ViewModel;
@@ -15,13 +10,16 @@ public partial class Page6 : ContentPage
     }
 
 
+
     private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-      
+        _page6ViewModel.Calculation();
     }
+   
+    
 
     private void SplitSlider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-       
+        _page6ViewModel.Calculation();
     }
 }

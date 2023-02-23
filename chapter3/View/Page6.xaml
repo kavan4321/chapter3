@@ -81,12 +81,12 @@
                 </Grid>
             </StackLayout>
         </Frame>
-        <Frame Margin="10,20,10,0">
-            <Grid
+            <Frame Margin="10,20,10,0">
+                <Grid
                 RowDefinitions="*,*,*,*,*"
                 ColumnDefinitions="*,*">
 
-                <Label
+                    <Label
                         Margin="0,15,0,0"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -94,8 +94,8 @@
                         VerticalOptions="Center"
                         FontAttributes="Bold"
                         Text="Tip">
-                </Label>
-                <Label 
+                    </Label>
+                    <Label 
                         x:Name="Tipvalue"
                         Text="{Binding Tip ,StringFormat='{0}%'}"
                         Grid.Row="0"
@@ -105,8 +105,8 @@
                         TextColor="Gray"
                         FontSize="16"
                        >
-                </Label>
-                <Slider 
+                    </Label>
+                    <Slider 
                     x:Name="Slider"
                     Value="{Binding TipSLider}"
                     ValueChanged="Slider_ValueChanged"
@@ -116,7 +116,7 @@
                     ThumbColor="Gray"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"></Slider>
-                <Label
+                    <Label
                         Margin="0,15,0,0"
                         Grid.Row="2"
                         Grid.Column="0"
@@ -124,8 +124,8 @@
                         VerticalOptions="Center"
                         FontAttributes="Bold"
                         Text="Split">
-                </Label>
-                <Label 
+                    </Label>
+                    <Label 
                         Grid.Row="2"
                         Grid.Column="1"
                         Margin="0,15,0,0"
@@ -134,19 +134,19 @@
                         Text="{Binding Split}"
                         FontSize="16"
                        >
-                </Label>
-                <Slider 
+                    </Label>
+                    <Slider 
                     Value="{Binding SplitSlider}"
                     x:Name="SplitSlider"
                     ValueChanged="SplitSlider_ValueChanged"
                     Margin="0,10,0,0"
-                    Minimum="1"
+                    Minimum="0"
                     Maximum="20"
                     ThumbColor="Gray"
                     Grid.Row="3"
                     Grid.ColumnSpan="2"></Slider>
 
-                <Label
+                    <Label
                         Margin="0,15,0,0"
                         Grid.Row="4"
                         Grid.Column="0"
@@ -154,8 +154,8 @@
                         VerticalOptions="Center"
                         FontAttributes="Bold"
                         Text="Split Total:">
-                </Label>
-                <Label 
+                    </Label>
+                    <Label 
                     x:Name="SplitTotalLabel"
                         Grid.Row="4"
                         Grid.Column="1" 
@@ -164,9 +164,9 @@
                         HorizontalOptions="EndAndExpand"
                         TextColor="Gray"
                         FontSize="16">
-                </Label>
-            </Grid>
-        </Frame>
-    </StackLayout>
+                    </Label>
+                </Grid>
+            </Frame>
+        </StackLayout>
     </ScrollView>
 </ContentPage>
